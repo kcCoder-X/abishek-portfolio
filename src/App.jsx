@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  Github,
-  Linkedin,
-  Instagram,
   Mail,
   Phone,
   MapPin,
@@ -13,6 +10,41 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import profilePhoto from './assets/abishekkc.jpeg';
+
+// Social Media Icon Components
+const GitHubIcon = ({ className = "w-6 h-6" }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+  </svg>
+);
+
+const LinkedInIcon = ({ className = "w-6 h-6" }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
+
+const InstagramIcon = ({ className = "w-6 h-6" }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
+  </svg>
+);
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,6 +56,7 @@ const Portfolio = () => {
     message: "",
   });
   const [formStatus, setFormStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -57,9 +90,32 @@ const Portfolio = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormStatus("Message sent successfully! 🚀");
-    setTimeout(() => setFormStatus(""), 3000);
+
+    if (!formData.name || !formData.email || !formData.message) {
+      setFormStatus("Please fill in all fields");
+      setTimeout(() => setFormStatus(""), 3000);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Create mailto link with pre-filled content
+    const subject = `Portfolio Contact from ${formData.name}`;
+    const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`;
+    const mailtoLink = `mailto:kcavi1030@gmail.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${body}`;
+
+    // Open email client
+    window.location.href = mailtoLink;
+
+    setFormStatus("Opening your email client... 📧");
     setFormData({ name: "", email: "", message: "" });
+
+    setTimeout(() => {
+      setFormStatus("");
+      setIsSubmitting(false);
+    }, 3000);
   };
 
   const projects = [
@@ -89,7 +145,7 @@ const Portfolio = () => {
     },
     { name: "Python", icon: Code2, color: "from-blue-500 to-cyan-500" },
     { name: "Java", icon: Code2, color: "from-orange-500 to-red-500" },
-    { name: "C++", icon: Code2, color: "from-green-500 to-emerald-500" },
+    { name: "MERN Stack", icon: Code2, color: "from-green-500 to-emerald-500" },
     { name: "MySQL", icon: Code2, color: "from-indigo-500 to-purple-500" },
   ];
 
@@ -186,7 +242,11 @@ const Portfolio = () => {
           <div className="mb-8 animate-fade-in">
             <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-r from-purple-600 to-pink-600 p-1 mb-6 animate-pulse-slow">
               <div className="w-full h-full rounded-full bg-black flex items-center justify-center text-6xl font-bold">
-                AK
+                <img
+                  src={profilePhoto}
+                  alt="Abishek Khadka"
+                  className="w-full h-full rounded-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -213,7 +273,7 @@ const Portfolio = () => {
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all hover:scale-110"
             >
-              <Github className="w-6 h-6" />
+              <GitHubIcon className="w-6 h-6" />
             </a>
             <a
               href="https://www.linkedin.com/in/abishek-khadka-1a1476339/"
@@ -221,7 +281,7 @@ const Portfolio = () => {
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all hover:scale-110"
             >
-              <Linkedin className="w-6 h-6" />
+              <LinkedInIcon className="w-6 h-6" />
             </a>
             <a
               href="https://www.instagram.com/abishekkhadka10/"
@@ -229,7 +289,7 @@ const Portfolio = () => {
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all hover:scale-110"
             >
-              <Instagram className="w-6 h-6" />
+              <InstagramIcon className="w-6 h-6" />
             </a>
           </div>
 
@@ -259,12 +319,12 @@ const Portfolio = () => {
             <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all hover:scale-105">
               <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
                 <Brain className="w-8 h-8 text-purple-500" />
-                Machine Learning Specialist
+                Machine Learning Enthusiast
               </h3>
               <p className="text-gray-400 leading-relaxed">
-                Passionate about artificial intelligence and machine learning,
-                I'm dedicated to building intelligent systems that solve
-                real-world problems. Currently pursuing my Bachelor's in
+                I am passionate about artificial intelligence and machine learning,
+                I'm continuously exploring about building intelligent systems that solve
+                real-world problems. I am currently pursuing my Bachelor's in
                 Information Technology while diving deep into ML algorithms,
                 neural networks, and data-driven solutions.
               </p>
@@ -273,10 +333,10 @@ const Portfolio = () => {
             <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all hover:scale-105">
               <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
                 <Code2 className="w-8 h-8 text-pink-500" />
-                Full-Stack Developer
+                MERN-Stack Developer
               </h3>
               <p className="text-gray-400 leading-relaxed">
-                With strong foundations in Python, Java, and C++, I craft
+                With strong foundations in Python, Java, and MERN Stack, I craft
                 elegant solutions that merge functionality with innovation. I'm
                 driven by attention to detail, quick decision-making, and a
                 commitment to creating exceptional user experiences through
@@ -378,7 +438,7 @@ const Portfolio = () => {
                     rel="noopener noreferrer"
                     className={`inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${project.gradient} rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105`}
                   >
-                    <Github className="w-5 h-5" />
+                    <GitHubIcon className="w-5 h-5" />
                     View on GitHub
                     <ExternalLink className="w-4 h-4" />
                   </a>
@@ -442,7 +502,7 @@ const Portfolio = () => {
                   rel="noopener noreferrer"
                   className="p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all hover:scale-110"
                 >
-                  <Github className="w-6 h-6" />
+                  <GitHubIcon className="w-6 h-6" />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/abishek-khadka-1a1476339/"
@@ -450,7 +510,7 @@ const Portfolio = () => {
                   rel="noopener noreferrer"
                   className="p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all hover:scale-110"
                 >
-                  <Linkedin className="w-6 h-6" />
+                  <LinkedInIcon className="w-6 h-6" />
                 </a>
                 <a
                   href="https://www.instagram.com/abishekkhadka10/"
@@ -458,7 +518,7 @@ const Portfolio = () => {
                   rel="noopener noreferrer"
                   className="p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all hover:scale-110"
                 >
-                  <Instagram className="w-6 h-6" />
+                  <InstagramIcon className="w-6 h-6" />
                 </a>
               </div>
             </div>
@@ -512,13 +572,23 @@ const Portfolio = () => {
 
                 <button
                   onClick={handleSubmit}
-                  className="w-full px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-semibold hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-105"
+                  disabled={isSubmitting}
+                  className={`w-full px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-semibold hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-105 ${
+                    isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
                 >
-                  Send Message
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
 
                 {formStatus && (
-                  <p className="text-center text-green-400 animate-fade-in">
+                  <p
+                    className={`text-center animate-fade-in ${
+                      formStatus.includes("Failed") ||
+                      formStatus.includes("fill")
+                        ? "text-red-400"
+                        : "text-green-400"
+                    }`}
+                  >
                     {formStatus}
                   </p>
                 )}
