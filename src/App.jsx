@@ -67,7 +67,7 @@ const Portfolio = () => {
       title: "NepalPlay",
       description:
         "A revolutionary platform for scouting talented players and fostering the development of sports in Nepal. Empowering athletes and building the future of Nepali sports.",
-      tech: ["Python", "Machine Learning", "Data Analytics"],
+      tech: ["ReactJS", "Machine Learning", "Data Analytics"],
       github: "https://github.com/kcCoder-X/NepalPlay",
       gradient: "from-purple-600 to-blue-600",
     },
@@ -75,7 +75,7 @@ const Portfolio = () => {
       title: "Machine Learning Projects",
       description:
         "A comprehensive collection of ML implementations showcasing expertise in predictive modeling, data analysis, and AI-driven solutions. Exploring the frontiers of artificial intelligence.",
-      tech: ["Python", "TensorFlow", "Scikit-learn", "Neural Networks"],
+      tech: ["Numpy", "Pandas", "Matplotlib", "Seaborn", "Scikit-learn"],
       github: "https://github.com/kcCoder-X/Machine_Learning",
       gradient: "from-pink-600 to-orange-600",
     },
