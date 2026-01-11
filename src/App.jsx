@@ -67,7 +67,7 @@ const Portfolio = () => {
       title: "NepalPlay",
       description:
         "A revolutionary platform for scouting talented players and fostering the development of sports in Nepal. Empowering athletes and building the future of Nepali sports.",
-      tech: ["ReactJS", "Machine Learning", "Data Analytics"],
+      tech: ["MERN Stack"],
       github: "https://github.com/kcCoder-X/NepalPlay",
       gradient: "from-purple-600 to-blue-600",
     },
