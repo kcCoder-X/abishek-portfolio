@@ -100,11 +100,10 @@ const Portfolio = () => {
     setIsSubmitting(true);
 
     try {
-      // Smart URL: works both locally and in production
       const API_URL =
         window.location.hostname === "localhost"
           ? "http://localhost:5000"
-          : "https://portfolio-backend-blue-zeta.vercel.app/";
+          : "https://portfolio-backend-blue-zeta.vercel.app";
 
       const response = await fetch(`${API_URL}/api/send-email`, {
         method: "POST",
@@ -126,7 +125,9 @@ const Portfolio = () => {
       }
     } catch (error) {
       console.error("Error:", error);
-      setFormStatus("Failed to send message. Please try again.");
+      setFormStatus(
+        "Failed to send message. Please try again or email me directly at kcavi1030@gmail.com",
+      );
     } finally {
       setIsSubmitting(false);
       setTimeout(() => setFormStatus(""), 5000);
