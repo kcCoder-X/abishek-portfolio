@@ -88,35 +88,42 @@ const Portfolio = () => {
     setIsMenuOpen(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  if (!formData.name || !formData.email || !formData.message) {
+    setFormStatus('Please fill in all fields');
+    setTimeout(() => setFormStatus(''), 3000);
+    return;
+  }
+  
+  setIsSubmitting(true);
+  
+  try {
+    const response = await fetch('http://localhost:5000/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
 
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus("Please fill in all fields");
-      setTimeout(() => setFormStatus(""), 3000);
-      return;
+    const data = await response.json();
+
+    if (response.ok) {
+      setFormStatus('Message sent successfully! 🚀 I\'ll get back to you soon.');
+      setFormData({ name: '', email: '', message: '' });
+    } else {
+      setFormStatus('Failed to send message. Please try again.');
     }
-
-    setIsSubmitting(true);
-
-    // Create mailto link with pre-filled content
-    const subject = `Portfolio Contact from ${formData.name}`;
-    const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`;
-    const mailtoLink = `mailto:kcavi1030@gmail.com?subject=${encodeURIComponent(
-      subject,
-    )}&body=${body}`;
-
-    // Open email client
-    window.location.href = mailtoLink;
-
-    setFormStatus("Opening your email client... 📧");
-    setFormData({ name: "", email: "", message: "" });
-
-    setTimeout(() => {
-      setFormStatus("");
-      setIsSubmitting(false);
-    }, 3000);
-  };
+  } catch (error) {
+    console.error('Error:', error);
+    setFormStatus('Failed to send message. Please email me directly.');
+  } finally {
+    setIsSubmitting(false);
+    setTimeout(() => setFormStatus(''), 5000);
+  }
+};
 
   const projects = [
     {
