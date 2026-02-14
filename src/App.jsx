@@ -88,42 +88,50 @@ const Portfolio = () => {
     setIsMenuOpen(false);
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  
-  if (!formData.name || !formData.email || !formData.message) {
-    setFormStatus('Please fill in all fields');
-    setTimeout(() => setFormStatus(''), 3000);
-    return;
-  }
-  
-  setIsSubmitting(true);
-  
-  try {
-    const response = await fetch('http://localhost:5000/api/send-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const data = await response.json();
-
-    if (response.ok) {
-      setFormStatus('Message sent successfully! 🚀 I\'ll get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
-    } else {
-      setFormStatus('Failed to send message. Please try again.');
+    if (!formData.name || !formData.email || !formData.message) {
+      setFormStatus("Please fill in all fields");
+      setTimeout(() => setFormStatus(""), 3000);
+      return;
     }
-  } catch (error) {
-    console.error('Error:', error);
-    setFormStatus('Failed to send message. Please email me directly.');
-  } finally {
-    setIsSubmitting(false);
-    setTimeout(() => setFormStatus(''), 5000);
-  }
-};
+
+    setIsSubmitting(true);
+
+    try {
+      // Smart URL: works both locally and in production
+      const API_URL =
+        window.location.hostname === "localhost"
+          ? "http://localhost:5000"
+          : "https://portfolio-backend-blue-zeta.vercel.app/";
+
+      const response = await fetch(`${API_URL}/api/send-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setFormStatus(
+          "Message sent successfully! 🚀 I'll get back to you soon.",
+        );
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setFormStatus("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setFormStatus("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setFormStatus(""), 5000);
+    }
+  };
 
   const projects = [
     {
