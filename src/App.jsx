@@ -10,7 +10,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import profilePhoto from './assets/abishekkc.jpeg';
+import profilePhoto from "./assets/abishekkc.jpeg";
 
 // Social Media Icon Components
 const GitHubIcon = ({ className = "w-6 h-6" }) => (
@@ -103,7 +103,7 @@ const Portfolio = () => {
     const subject = `Portfolio Contact from ${formData.name}`;
     const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`;
     const mailtoLink = `mailto:kcavi1030@gmail.com?subject=${encodeURIComponent(
-      subject
+      subject,
     )}&body=${body}`;
 
     // Open email client
@@ -120,17 +120,17 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: "NepalPlay",
+      title: "Backend Ledger System",
       description:
-        "A revolutionary platform for scouting talented players and fostering the development of sports in Nepal. Empowering athletes and building the future of Nepali sports.",
-      tech: ["MERN Stack"],
-      github: "https://github.com/kcCoder-X/NepalPlay",
+        "Backend Ledger is a production-ready financial transaction system built with the MEN stack. It ensures atomic transfers, ledger-based accounting, idempotent APIs, and secure authentication for reliable money movement and audit tracking.",
+      tech: ["MEN Stack"],
+      github: "https://github.com/kcCoder-X/backend-ledger",
       gradient: "from-purple-600 to-blue-600",
     },
     {
       title: "Machine Learning Projects",
       description:
-        "A comprehensive collection of ML implementations showcasing expertise in predictive modeling, data analysis, and AI-driven solutions. Exploring the frontiers of artificial intelligence.",
+        "Developed ML models using supervised techniques (linear/logistic regression, decision trees) and unsupervised methods (K-means, PCA) on practical datasets, focused on data preprocessing, feature engineering, model evaluation, and insight extraction.",
       tech: ["Numpy", "Pandas", "Matplotlib", "Seaborn", "Scikit-learn"],
       github: "https://github.com/kcCoder-X/Machine_Learning",
       gradient: "from-pink-600 to-orange-600",
@@ -322,11 +322,11 @@ const Portfolio = () => {
                 Machine Learning Enthusiast
               </h3>
               <p className="text-gray-400 leading-relaxed">
-                I am passionate about artificial intelligence and machine learning,
-                I'm continuously exploring about building intelligent systems that solve
-                real-world problems. I am currently pursuing my Bachelor's in
-                Information Technology while diving deep into ML algorithms,
-                neural networks, and data-driven solutions.
+                I am passionate about artificial intelligence and machine
+                learning, I'm continuously exploring about building intelligent
+                systems that solve real-world problems. I am currently pursuing
+                my Bachelor's in Information Technology while diving deep into
+                ML algorithms, neural networks, and data-driven solutions.
               </p>
             </div>
 
@@ -348,7 +348,7 @@ const Portfolio = () => {
           {/* Skills Grid */}
           <div className="mb-16">
             <h3 className="text-3xl font-bold mb-8 text-center">
-              Technical Expertise
+              Technical Skills
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
               {skills.map((skill, index) => (
