@@ -349,14 +349,23 @@ const Portfolio = () => {
             <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all hover:scale-105">
               <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
                 <Code2 className="w-8 h-8 text-pink-500" />
-                MERN-Stack Developer
+                Data Engineering and Backend Systems
               </h3>
               <p className="text-gray-400 leading-relaxed">
-                With strong foundations in Python, Java, and MERN Stack, I craft
-                elegant solutions that merge functionality with innovation. I'm
-                driven by attention to detail, quick decision-making, and a
-                commitment to creating exceptional user experiences through
-                technology.
+                I developed a backend ledger system using the MEN stack
+                (MongoDB, Express.js, Node.js), where I designed RESTful APIs,
+                structured databases, and implemented clean, modular server
+                architecture. Through this, I gained solid understanding of
+                backend request lifecycle, scalable API design, and
+                production-ready development practices. Alongside backend
+                engineering, I am actively building my skills in Data
+                Engineering. I have performed e-commerce funnel and revenue
+                analysis using SQL, working with CTEs, aggregations, and
+                business KPI calculations. I am currently strengthening my
+                Python skills for data manipulation, analysis, and building
+                future data pipelines. My long-term vision is to work in sports
+                technology combining backend systems and data engineering to
+                build intelligent performance and analytics platforms.
               </p>
             </div>
           </div>
